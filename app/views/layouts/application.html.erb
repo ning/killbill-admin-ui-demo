@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KauiTester</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application", "bootstrap", "jquery.dataTables.min" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li <%= "class='active'" if params[:controller] == 'accounts' %>><%= link_to "Accounts", kaui_engine.accounts_path %></li>
+            <li <%= "class='active'" if params[:controller] == 'bundles' %>><%= link_to "Bundles", kaui_engine.bundles_path %></li>
+            <li <%= "class='active'" if params[:controller] == 'account_timeline' %>><%= link_to "Account Timeline", kaui_engine.account_timelines_path %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <% if flash[:error] %>
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="alert alert-error"><%= flash[:error] %></div>
+          </div>
+        </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="alert alert-info"><%= flash[:notice] %></div>
+          </div>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
